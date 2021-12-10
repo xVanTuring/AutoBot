@@ -1,7 +1,6 @@
 import {
   buildProject,
-  setDevEnv,
-  setProdEnv,
+  setEnvVersion,
   useLocalSdk,
   useModoSdk,
 } from "../actions/CocosBuild";
@@ -27,10 +26,9 @@ export enum JobType {
   GIT_RESET_LOCAL = "GIT_RESET_LOCAL",
   GIT_APPLY_PATCH = "GIT_APPLY_PATCH",
 
-  BUILD_SET_DEV_ENV = "BUILD_SET_DEV_ENV",
-  BUILD_SET_PROD_ENV = "BUILD_SET_PROD_ENV",
   BUILD_USE_LOCAL_SDK = "BUILD_USE_LOCAL_SDK",
   BUILD_USE_MODO_SDK = "BUILD_USE_MODO_SDK",
+  BUILD_SET_ENV_VERSION = "BUILD_SET_ENV_VERSION",
   BUILD_PROJECT = "BUILD_PROJECT",
 
   PACK_GEN_ANDROID_HOT_UPDATE = "PACK_GEN_ANDROID_HOT_UPDATE",
@@ -65,8 +63,7 @@ const JobDict: Record<JobType, Function> = {
   GIT_RESET_LOCAL: resetLocal,
   GIT_APPLY_PATCH: applyPatch,
 
-  BUILD_SET_DEV_ENV: setDevEnv,
-  BUILD_SET_PROD_ENV: setProdEnv,
+  BUILD_SET_ENV_VERSION: setEnvVersion,
   BUILD_USE_LOCAL_SDK: useLocalSdk,
   BUILD_USE_MODO_SDK: useModoSdk,
   BUILD_PROJECT: buildProject,

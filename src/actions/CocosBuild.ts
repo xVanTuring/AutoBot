@@ -4,14 +4,18 @@ import { getPatchPath, ProvidedPatch } from "../config/PatchPath";
 import { applyPatch } from "./GitOps";
 import { run } from "./Run";
 
-export function setDevEnv(projectPath: string, version: string) {
-  const npmPath = getBinaryPath(ProvidedBinary.NPM);
-  return run(npmPath, ["run", "setDevCfg", version], projectPath, 0);
-}
-
-export function setProdEnv(projectPath: string, version: string) {
-  const npmPath = getBinaryPath(ProvidedBinary.NPM);
-  return run(npmPath, ["run", "setProdCfg", version], projectPath, 0);
+export function setEnvVersion(
+  projectPath: string,
+  env: string,
+  version: string
+) {
+  const nodePath = getBinaryPath(ProvidedBinary.NODE);
+  return run(
+    nodePath,
+    ["./scripts/setPackageCfg.js", "--env", env, "--version", version],
+    projectPath,
+    0
+  );
 }
 
 export function useLocalSdk(projectPath: string) {
@@ -23,10 +27,7 @@ export function useModoSdk(projectPath: string) {
   return applyPatch(projectPath, getPatchPath(ProvidedPatch.UseModoSdk));
 }
 
-export function buildProject(
-  projectPath: string,
-  platform: "android" | "ios"
-) {
+export function buildProject(projectPath: string, platform: "android" | "ios") {
   const configPath = getConfigPath(
     platform === "android" ? ProvidedConfig.ANDROID : ProvidedConfig.IOS
   );
