@@ -1,0 +1,109 @@
+{
+  "name": "DreamlandPrincess",
+  "platform": "android",
+  "buildPath": "project://build",
+  "debug": false,
+  "md5Cache": false,
+  "sourceMaps": false,
+  "replaceSplashScreen": true,
+  "mainBundleCompressionType": "merge_dep",
+  "mainBundleIsRemote": false,
+  "mergeStartScene": false,
+  "experimentalEraseModules": false,
+  "compressTexture": true,
+  "packAutoAtlas": true,
+  "startScene": "5d77b7b7-f680-43d0-b8fe-42ea09bc46d7",
+  "scenes": [
+    {
+      "url": "db://assets/scenes/GameScene.scene",
+      "uuid": "ed57677b-6fc5-4bc6-a62f-98a142e47a6a",
+      "inBundle": false
+    },
+    {
+      "url": "db://assets/scenes/LevelMapScene.scene",
+      "uuid": "0da791eb-5d04-4a16-a37c-0955e8a7128e",
+      "inBundle": false
+    },
+    {
+      "url": "db://assets/scenes/MainScene.scene",
+      "uuid": "d8f87903-7a09-495a-96f1-687a7df4b204",
+      "inBundle": false
+    },
+    {
+      "url": "db://assets/scenes/PersonalScene.scene",
+      "uuid": "575ddad4-eed2-4fda-a1eb-109881eeb8e4",
+      "inBundle": false
+    },
+    {
+      "url": "db://assets/scenes/PreviewerScene.scene",
+      "uuid": "fa0b13cf-af94-49e3-8341-1ee310939dde",
+      "inBundle": false
+    },
+    {
+      "url": "db://assets/scenes/SigninScene.scene",
+      "uuid": "5d77b7b7-f680-43d0-b8fe-42ea09bc46d7",
+      "inBundle": false
+    },
+    {
+      "url": "db://assets/scenes/UserPageScene.scene",
+      "uuid": "259992f5-67f2-478c-8286-e44d588d6d5e",
+      "inBundle": false
+    },
+    {
+      "url": "db://assets/scenes/LoadingScene.scene",
+      "uuid": "0b23b425-909c-4d17-b54f-2162c915d11e"
+    }
+  ],
+  "outputName": "android",
+  "packages": {
+    "android": {
+      "packageName": "com.dlprincess.guanfang.large",
+      "apiLevel": "android-30",
+      "appABIs": [
+        "arm64-v8a",
+        "armeabi-v7a"
+      ],
+      "useDebugKeystore": true,
+      "keystorePath": "",
+      "keystorePassword": "",
+      "keystoreAlias": "",
+      "keystoreAliasPassword": "",
+      "appBundle": false,
+      "androidInstant": false,
+      "remoteUrl": "",
+      "orientation": {
+        "portrait": true,
+        "upsideDown": false,
+        "landscapeRight": false,
+        "landscapeLeft": false
+      },
+      "renderBackEnd": {
+        "vulkan": false,
+        "gles3": false,
+        "gles2": true
+      },
+      "__version__": "1.0.0"
+    },
+    "native": {
+      "polyfills": {
+        "asyncFunctions": true
+      },
+      "encrypted": false,
+      "xxteaKey": "30oz9xADhHor/FsO",
+      "compressZip": false,
+      "makeAfterBuild": false,
+      "JobSystem": "taskFlow",
+      "remoteServerAddress": "https://hjgzcdn.dreamlandps.com/remoteAssets/",
+      "__version__": "1.0.0"
+    },
+    "cocos-service": {
+      "configID": "43e0b6",
+      "services": [],
+      "__version__": "3.0.1"
+    },
+    "hot-update": {
+      "__version__": "0.0.2"
+    }
+  },
+  "__version__": "1.2.9"
+}

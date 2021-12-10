@@ -1,0 +1,12 @@
+diff --git a/assets/scripts/controllers/SdkCtr.ts b/assets/scripts/controllers/SdkCtr.ts
+--- a/assets/scripts/controllers/SdkCtr.ts
++++ b/assets/scripts/controllers/SdkCtr.ts
+@@ -6,7 +6,7 @@ import { BI_EVENT } from '../models/BIReport';
+ 
+ const debug = Debugger('SdkCtr');
+ 
+-export const useLocalSDK = false;
++export const useLocalSDK = true;
+ 
+ export enum TagEventType {
+     ONLINE = 'online',
