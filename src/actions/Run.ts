@@ -1,5 +1,7 @@
 import { spawn } from "child_process";
 import { Promise as BPromise } from "bluebird";
+import fs from 'fs';
+
 export function run(
   binaryPath: string,
   command: string[],
@@ -11,9 +13,9 @@ export function run(
       cwd: cwd,
     });
 
-    child.stdout.pipe(process.stdout);
-    child.stderr.pipe(process.stderr);
-
+    const logFile = fs.createWriteStream(process.env['LOG_FILE']!, { flags: 'a' })
+    child.stdout.pipe(logFile);
+    child.stderr.pipe(logFile);
     child.on("exit", (code) => {
       if (succesCode != null && code !== succesCode) {
         console.error(`Program filed with code ${code}`);

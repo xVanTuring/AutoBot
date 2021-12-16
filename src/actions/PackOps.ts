@@ -50,15 +50,18 @@ export async function packCompileBundle(
       name: "cocos.compile.config.json",
     });
   }
-  archive.finalize();
-  await new Promise((resolve, reject) => {
-    archive.on("close", () => {
+
+  let wait = new Promise((resolve, reject) => {
+    archive.on("finish", () => {
       resolve(null);
     });
     archive.on("error", (err) => {
       reject(err);
     });
   });
+
+  archive.finalize();
+  await wait;
   return artifactPath;
 }
 
@@ -78,16 +81,17 @@ export async function packHotUpdateArtifact(
   const archive = archiver("zip");
   archive.pipe(output);
   archive.directory(hotPath, basename(hotPath));
-  archive.finalize();
-  await new Promise((resolve, reject) => {
-    archive.on("close", () => {
+
+  let wait = new Promise((resolve, reject) => {
+    archive.on("finish", () => {
       resolve(null);
     });
     archive.on("error", (err) => {
       reject(err);
     });
   });
-
+  archive.finalize();
+  await wait;
   return artifactPath;
 }
 
