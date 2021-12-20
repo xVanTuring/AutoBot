@@ -10,7 +10,9 @@ BlurBird.config({
 });
 
 (async () => {
-  const jobList = [...compileTask("develop", "dev", "0.0.1", "ios")];
+  const jobList = [
+    ...compileTask("develop", "prod", "1.1.3", "1.0.9", "android"),
+  ];
   const job = Bluebird.each(jobList, async (job) => {
     console.log(`Processing Job ${job.type}`);
     await runJob(job);

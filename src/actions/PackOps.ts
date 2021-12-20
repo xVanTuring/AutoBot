@@ -11,14 +11,16 @@ import { run } from "./Run";
 import { createWriteStream } from "fs";
 import { ensureDir, readFile } from "fs-extra";
 
-export async function generateAndroidHotUpdate(projectPath: string) {
+export async function generateHotUpdate(
+  projectPath: string,
+  platform: "android" | "ios"
+) {
   const npmPath = getBinaryPath(ProvidedBinary.NPM);
-  await run(npmPath, ["run", "genAndroidUpdate"], projectPath, 0);
-}
-
-export async function generateIosHotUpdate(projectPath: string) {
-  const npmPath = getBinaryPath(ProvidedBinary.NPM);
-  await run(npmPath, ["run", "genIosUpdate"], projectPath, 0);
+  if (platform === "android") {
+    await run(npmPath, ["run", "genAndroidUpdate"], projectPath, 0);
+  } else {
+    await run(npmPath, ["run", "genIosUpdate"], projectPath, 0);
+  }
 }
 
 export async function packCompileBundle(

@@ -12,10 +12,9 @@ import {
   fetchAll,
 } from "../actions/GitOps";
 import {
-  generateAndroidHotUpdate,
-  generateIosHotUpdate,
   packHotUpdateArtifact,
   packCompileBundle,
+  generateHotUpdate,
 } from "../actions/PackOps";
 import { getProjectPath } from "../config/ProjectPath";
 
@@ -31,8 +30,7 @@ export enum JobType {
   BUILD_SET_ENV_VERSION = "BUILD_SET_ENV_VERSION",
   BUILD_PROJECT = "BUILD_PROJECT",
 
-  PACK_GEN_ANDROID_HOT_UPDATE = "PACK_GEN_ANDROID_HOT_UPDATE",
-  PACK_GEN_IOS_HOT_UPDATE = "PACK_GEN_IOS_HOT_UPDATE",
+  PACK_GEN_HOT_UPDATE = "PACK_GEN_HOT_UPDATE",
   PACK_HOT_UPDATE = "PACK_HOT_UPDATE",
   PACK_COMPILE_BUNDLE = "PACK_COMPILE_BUNDLE",
 }
@@ -68,8 +66,7 @@ const JobDict: Record<JobType, Function> = {
   BUILD_USE_MODO_SDK: useModoSdk,
   BUILD_PROJECT: buildProject,
 
-  PACK_GEN_ANDROID_HOT_UPDATE: generateAndroidHotUpdate,
-  PACK_GEN_IOS_HOT_UPDATE: generateIosHotUpdate,
+  PACK_GEN_HOT_UPDATE: generateHotUpdate,
   PACK_HOT_UPDATE: packHotUpdateArtifact,
   PACK_COMPILE_BUNDLE: packCompileBundle,
 };
