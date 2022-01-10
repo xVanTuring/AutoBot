@@ -79,10 +79,12 @@
       },
       "renderBackEnd": {
         "vulkan": false,
-        "gles3": false,
+        "gles3": true,
         "gles2": true
       },
-      "__version__": "1.0.0"
+      "__version__": "1.0.0",
+      "sdkPath": "",
+      "ndkPath": ""
     },
     "native": {
       "polyfills": {
@@ -99,11 +101,11 @@
     "cocos-service": {
       "configID": "43e0b6",
       "services": [],
-      "__version__": "3.0.1"
+      "__version__": "3.0.2"
     },
     "hot-update": {
       "__version__": "0.0.2"
     }
   },
-  "__version__": "1.2.9"
+  "__version__": "1.3.0"
 }

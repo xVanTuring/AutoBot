@@ -14,8 +14,9 @@ export function run(
     });
 
     const logFile = fs.createWriteStream(process.env['LOG_FILE']!, { flags: 'a' })
+    const logerrFile = fs.createWriteStream(process.env['LOG_ERROR_FILE']!, { flags: 'a' })
     child.stdout.pipe(logFile);
-    child.stderr.pipe(logFile);
+    child.stderr.pipe(logerrFile);
     child.on("exit", (code) => {
       if (succesCode != null && code !== succesCode) {
         console.error(`Program filed with code ${code}`);

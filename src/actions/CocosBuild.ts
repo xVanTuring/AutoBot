@@ -8,12 +8,11 @@ export function setEnvVersion(
   projectPath: string,
   env: string,
   version: string,
-  appVersion: string
 ) {
   const nodePath = getBinaryPath(ProvidedBinary.NODE);
   return run(
     nodePath,
-    ["./scripts/setPackageCfg.js", "--env", env, "--version", version, appVersion],
+    ["./scripts/setPackageCfg.js", "--env", env, "--version", version],
     projectPath,
     0
   );
