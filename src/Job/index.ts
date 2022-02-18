@@ -15,7 +15,9 @@ import {
   packHotUpdateArtifact,
   packCompileBundle,
   generateHotUpdate,
+  packRemoteAssets,
 } from "../actions/PackOps";
+import { copyRemoteAssetsToUpload, moveHotUpdateAssetsToUpload, unzipRemoteAssetsArtifact, unzipServerHotUpdateArtifact, uploadHotUpdateArtifact, uploadRemoteAssetsArtifact } from "../actions/Upload";
 import { getProjectPath } from "../config/ProjectPath";
 
 export enum JobType {
@@ -33,6 +35,15 @@ export enum JobType {
   PACK_GEN_HOT_UPDATE = "PACK_GEN_HOT_UPDATE",
   PACK_HOT_UPDATE = "PACK_HOT_UPDATE",
   PACK_COMPILE_BUNDLE = "PACK_COMPILE_BUNDLE",
+  PACK_REMOTE_ASSETS = "PACK_REMOTE_ASSETS",
+
+  UPLOAD_REMOTE_ASSETS = "UPLOAD_REMOTE_ASSETS",
+  UPLOAD_HOTUPDATE_ARTIFACT = "UPLOAD_HOTUPDATE_ARTIFACT",
+  UPLOAD_UNZIP_HOT_UPDATE = "UPLOAD_UNZIP_HOT_UPDATE",
+  UPLOAD_UNZIP_REMOTE_ASSETS = "UPLOAD_UNZIP_REMOTE_ASSETS",
+
+  UPLOAD_MOVE_HOTUPDATE = "UPLOAD_MOVE_HOTUPDATE",
+  UPLOAD_COPY_REMOTE = "UPLOAD_COPY_REMOTE"
 }
 export interface Job {
   type: JobType;
@@ -69,7 +80,17 @@ const JobDict: Record<JobType, Function> = {
   PACK_GEN_HOT_UPDATE: generateHotUpdate,
   PACK_HOT_UPDATE: packHotUpdateArtifact,
   PACK_COMPILE_BUNDLE: packCompileBundle,
+  PACK_REMOTE_ASSETS: packRemoteAssets,
+
+  UPLOAD_REMOTE_ASSETS: uploadRemoteAssetsArtifact,
+  UPLOAD_HOTUPDATE_ARTIFACT: uploadHotUpdateArtifact,
+  UPLOAD_UNZIP_HOT_UPDATE: unzipServerHotUpdateArtifact,
+  UPLOAD_UNZIP_REMOTE_ASSETS: unzipRemoteAssetsArtifact,
+
+  UPLOAD_MOVE_HOTUPDATE: moveHotUpdateAssetsToUpload,
+  UPLOAD_COPY_REMOTE: copyRemoteAssetsToUpload
 };
+
 export function runJob(job: Job) {
   const repoPath = getProjectPath();
   const executor = JobDict[job.type];

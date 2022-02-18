@@ -4,6 +4,7 @@ import {
   getBuildPath,
   getDistPath,
   getHotUpdatePath,
+  getRemoteAssetsPath,
   ProvidedDist,
 } from "../config/ArtifactPath";
 import { getBinaryPath, ProvidedBinary } from "../config/BinaryPath";
@@ -66,6 +67,42 @@ export async function packCompileBundle(
   await wait;
   return artifactPath;
 }
+export function getHotUpdateDistPath(_: string,
+  platform: "android" | "ios", version: string) {
+  const hotUpdateDistDir = getDistPath(ProvidedDist.HotUpdate, false);
+  const artifactPath = path.join(
+    hotUpdateDistDir,
+    `${platform}-v${version}-hotupdate.zip`
+  );
+  return artifactPath;
+}
+
+export function getRemoteArtifact() {
+  const remoteDistDir = getDistPath(ProvidedDist.Remote, false);
+  const remoteArtifact = path.join(remoteDistDir, "remote.zip")
+  return remoteArtifact;
+}
+export async function packRemoteAssets(projectPath: string,
+  platform: "android" | "ios") {
+  const remoteAssetDir = getRemoteAssetsPath(projectPath, platform)
+  const remoteDistDir = getDistPath(ProvidedDist.Remote, false);
+  const remoteArtifact = path.join(remoteDistDir, "remote.zip")
+  const output = createWriteStream(remoteArtifact);
+  const archive = archiver("zip");
+  archive.pipe(output)
+  archive.directory(remoteAssetDir, basename(remoteAssetDir));
+  let wait = new Promise((resolve, reject) => {
+    archive.on("finish", () => {
+      resolve(null);
+    });
+    archive.on("error", (err) => {
+      reject(err);
+    });
+  });
+  archive.finalize();
+  await wait;
+  return remoteArtifact;
+}
 
 export async function packHotUpdateArtifact(
   projectPath: string,
@@ -97,7 +134,7 @@ export async function packHotUpdateArtifact(
   return artifactPath;
 }
 
-async function getVersion(projectPath: string) {
+export async function getVersion(projectPath: string) {
   let version = "";
   const versionFilePath = path.join(projectPath, "/assets/scripts/Version.ts");
   const versionFileContent = await readFile(versionFilePath, "utf-8");
