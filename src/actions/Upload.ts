@@ -1,11 +1,11 @@
 import path from "path";
 import { getHotUpdateDistPath, getRemoteArtifact, getVersion } from "./PackOps";
 import { run } from "./Run";
-const remoteTempUploadDir = "/tmp/sinonet_upload1"
+const remoteTempUploadDir = "/tmp/sinonet_upload"
 const remoteHostAddress = "lixiaofan@13.229.238.204"
 const remoteUnzipDirName = "unzip"
-const removeCDNUpdateUploadDir = "/tmp/upload_dir_test/updates/"
-const removeRemoteAssetsUploadDir = "/tmp/upload_dir_test/remoteAssets/"
+const removeCDNUpdateUploadDir = "~/upload_dir/updates/"
+const removeRemoteAssetsUploadDir = "~/upload_dir/remoteAssets/"
 
 export async function uploadHotUpdateArtifact(projectPath: string,
     platform: "android" | "ios") {
